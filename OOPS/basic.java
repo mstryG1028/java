@@ -4,18 +4,28 @@ package OOPS;
 // //only in main fn we cant acces outside of main fn
 // public class basic {
 //     //declaration of class which we can also call this user defined data type
-//     // class ka name small me bhi de skate hai but acha lagne ke liye
+//     // class ka name small me bhi de skate hai but acha lagne ke liye and best practice
 //     public static class Student {
 //         String name;
 //          private int roll;
 //         int age;
 // final String scName="bss";
 // final kw ka use hai- value ko change nhi kar sakte bas use kr sakte hai
-//isme getter setter bhi kaam nhi karta
-//         //constructor which is used to take value at obj creation
-// jab bhi hum khud se contructor bnate hai to to default cons delet ho jata hai
-// jiske wahjaha se s1.name="deepak"nhi kar sakte ye bhi access karne ke liye 
-// default constr bna lena hai phir dono type kaam karega
+//isme getter ka use karke value read kar sakte hai but
+//  setter ka use karke set or change nhi kar sakte
+
+
+
+// Constructor object creation ke time values initialize karne ke liye use hota hai
+// Agar hum khud koi constructor banate hain, to Java default constructor provide nahi karta
+// jiske wajah se s1.name="deepak"nhi kar sakte ye bhi access karne ke liye 
+// Isliye default aur parameterized dono constructor chahiye ho,
+// to hume default constructor manually define karna padta hai
+
+// NOTE: agar hum def cons use karte hai to Student s1=new Student(); s1.name="ram"; valid 
+//nhi to parameter dena padta hai
+//conclusion: default cons are non parameterize another parameterized
+
 //         Student(String name, int roll, int age) {
 //             this.name = name;
 //             this.roll = roll;
@@ -96,6 +106,8 @@ public class basic {
     }
 
     public static void main(String[] args) {
+
+
         // Student.nOfStd = 21;
         //private whithin root class accesible hai but directly 
         // yahan acces nhi kar sakte isliye getter bnaya hai
@@ -106,6 +118,7 @@ public class basic {
         // agr id ko unique bnana hai to validations lgana padega 
         //ex hashMap isContains() etc
         System.out.println(Student.getNoOfStd());
+        
     }
 
 }

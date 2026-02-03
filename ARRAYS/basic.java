@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-public class basic {
+ class basic {
 
     static void printArr(int arr[]) {
         for (int val : arr) {
@@ -188,6 +188,8 @@ public class basic {
         // System.out.println(lengthOfLAstWord(s));
         // String arr[] = {""};
         // System.out.println(longestCommonPref(arr));
+
+        
 
         String arr[] = {"flowers", "flow", "flight"};
         Arrays.sort(arr);
