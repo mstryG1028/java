@@ -1,4 +1,4 @@
-
+package STACKS;
 // FIXED SIZE
 // MEMORY CONSUMPTIO LESS
 //OVERFLOW YES
@@ -49,10 +49,11 @@
 //         return size;
 //     }
 // }
-
+// USING LINKEDLIST
 // SIZE DYNAMIC
 // MEMOMY CONSUMPTION MORE
 // OVERFLOW-NO
+
 class stack {
 
     //pehle ek node class bnaye or const me usko null value assigned
@@ -68,8 +69,8 @@ class stack {
             this.next = null;
         }
     }
-
     Node top;
+    int size=0;
 
     stack() {
         top = null;
@@ -79,6 +80,7 @@ class stack {
         Node newNode = new Node(x);
         newNode.next = top;
         top = newNode;
+        size++;
     }
 
     int peek() {
@@ -94,17 +96,21 @@ class stack {
         }
         int popped = top.data;
         top = top.next;
+        size--;
         return popped;
     }
 
     boolean isEmpty() {
         return top == null;
     }
+    int getSize(){
+        return size;
+    }
 
     void printStack() {
         Node temp = top;
         while (temp != null) {
-            System.out.println(temp.data);
+            System.out.print(temp.data+" ");
             temp = temp.next;
         }
     }
@@ -119,7 +125,10 @@ public class Imple {
         s.push(3);
         s.push(4);
         s.push(5);
-
+        System.out.println(s.peek());
+        System.out.println("size"+ s.getSize());
+        System.out.println(s.pop());
+        System.out.println( "size"+s.getSize());
         s.printStack();
 
     }

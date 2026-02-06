@@ -1,16 +1,20 @@
 
-// import java.util.Queue;
-// public class basic {
-// //     static void reverseQ(Queue<Integer>q){
-// //  Stack<Integer>st=new Stack<>();
-// //     while(!q.isEmpty()){
-// //         st.push(q.poll());
-// //     }
-// //     while(!st.isEmpty()){
-// //         q.add(st.pop());
-// //     }
-// //     System.out.println(q);
-// //     }
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class basic {
+
+    static void reverseQ(Queue<Integer> q) {
+        Stack<Integer> st = new Stack<>();
+        while (!q.isEmpty()) {
+            st.push(q.poll());
+        }
+        while (!st.isEmpty()) {
+            q.add(st.pop());
+        }
+        System.out.println(q);
+    }
 //     // static void reverseK(Queue<Integer> q, int k) {
 //     //     Stack<Integer> st = new Stack<>();
 //     //     int n = 1;
@@ -54,15 +58,16 @@
 //             System.out.println(q);
 //         }
 //     }
-//     public static void main(String[] args) {
-//         Queue<Integer> q = new LinkedList<>();
-//         q.add(1);
-//         q.add(2);
-//         q.add(3);
-//         q.add(4);
-//         q.add(5);
-//         // System.out.println(q);
-//         // reverseQ(q);
+
+    public static void main(String[] args) {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(1);
+        q.add(2);
+        q.add(3);
+        q.add(4);
+        q.add(5);
+        System.out.println("hello");
+        reverseQ(q);
 //         // System.out.println(q);
 //         // reverseK(q, 4);
 //         myStack st = new myStack();
@@ -75,8 +80,5 @@
 //         st.print();
 //         System.out.println(st.peek());
 //         st.print();
-//     }
-// }
-
-
-
+    }
+}

@@ -1,8 +1,9 @@
+package STACKS;
 
 import java.util.Stack;
 
-
 public class basic {
+
     static boolean isValid(String s) {
         Stack<Character> st = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
@@ -23,8 +24,10 @@ public class basic {
         }
         return st.isEmpty();
     }
+    
+
     public static void main(String[] args) {
-        String s = "";
+        String s = "{{[]}}()[]";
         System.out.println(isValid(s));
     }
 }

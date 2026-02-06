@@ -54,6 +54,8 @@ package OOPS;
 //         Student s1 = new Student("deepak", 12, 1234);
 //     }
 // }
+
+
 //POINT: classes are passed by ref
 // means:we can change value of obj by using fn or dirctly
 // public class basic{
@@ -103,11 +105,14 @@ public class basic {
         public static int getNoOfStd() { //getter
             return nOfStd;
         }
+       public static int changeNo(int x){
+            return x+10;
+        }
     }
 
     public static void main(String[] args) {
 
-
+System.out.println(changeNo(20));
         // Student.nOfStd = 21;
         //private whithin root class accesible hai but directly 
         // yahan acces nhi kar sakte isliye getter bnaya hai

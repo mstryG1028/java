@@ -1,53 +1,54 @@
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 
 public class q {
 
-    // static int findFreq(HashMap<Integer, Integer> map, int arr[]) {
-    //     int max = 0;
-    //     int ansKey = 0;
-    //     for (int i = 0; i < arr.length; i++) {
-    //         if (!map.containsKey(arr[i])) {
-    //             map.put(arr[i], 1);
-    //         } else {
-    //             map.put(arr[i], map.get(arr[i]) + 1);
-    //         }
-    //     }
-    //     for (Map.Entry<Integer, Integer> e : map.entrySet()) {
-    //         if (e.getValue() > max) {
-    //             max = e.getValue();
-    //             ansKey = e.getKey();
-    //         }
-    //     }
-    //     return ansKey;
-    // }
-    // static String isAnagram(String A, String B) {
-    //     HashMap<Character, Integer> map1 = new HashMap<>();
-    //     if (A.length() != B.length()) {
-    //         return "no";
-    //     }
-    //     for (int i = 0; i < A.length(); i++) {
-    //         char currChar = A.charAt(i);
-    //         if (!map1.containsKey(currChar)) {
-    //             map1.put(currChar, 1);
-    //         } else {
-    //             map1.put(currChar, map1.get(currChar) + 1);
-    //         }
-    //     }
-    //     for (int i = 0; i < B.length(); i++) {
-    //         char currChar = B.charAt(i);
-    //         if (!map1.containsKey(currChar)) {
-    //             return "no";
-    //         } else if(map1.get(currChar)>1) {
-    //             map1.put(currChar, map1.get(currChar) - 1);
-    //         } else{
-    //             map1.remove(currChar);
-    //         }
-    //     }
-    //     return "yes";
-    // }
+    static int findFreq(HashMap<Integer, Integer> map, int arr[]) {
+        int max = 0;
+        int ansKey = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (!map.containsKey(arr[i])) {
+                map.put(arr[i], 1);
+            } else {
+                map.put(arr[i], map.get(arr[i]) + 1);
+            }
+        }
+        for (Map.Entry<Integer, Integer> e : map.entrySet()) {
+            if (e.getValue() > max) {
+                max = e.getValue();
+                ansKey = e.getKey();
+            }
+        }
+        return ansKey;
+    }
+    static String isAnagram(String A, String B) {
+        HashMap<Character, Integer> map1 = new HashMap<>();
+        if (A.length() != B.length()) {
+            return "no";
+        }
+        for (int i = 0; i < A.length(); i++) {
+            char currChar = A.charAt(i);
+            if (!map1.containsKey(currChar)) {
+                map1.put(currChar, 1);
+            } else {
+                map1.put(currChar, map1.get(currChar) + 1);
+            }
+        }
+        for (int i = 0; i < B.length(); i++) {
+            char currChar = B.charAt(i);
+            if (!map1.containsKey(currChar)) {
+                return "no";
+            } else if(map1.get(currChar)>1) {
+                map1.put(currChar, map1.get(currChar) - 1);
+            } else{
+                map1.remove(currChar);
+            }
+        }
+        return "yes";
+    }
     // static boolean isoMorphic(String a, String b) {
     //     HashMap<Character, Character> map = new HashMap<>();
     //     if (a.length() != b.length()) {

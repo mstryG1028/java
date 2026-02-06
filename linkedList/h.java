@@ -52,6 +52,7 @@ public class h {
 
     }
 
+
     public static void main(String[] args) {
         Node n1 = new Node(1);
         Node n2 = new Node(4);

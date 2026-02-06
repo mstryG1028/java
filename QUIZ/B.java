@@ -106,3 +106,12 @@ public class B {
 // }
     }
 }
+
+// static means “belongs to a class, not to an object.”
+// A top-level class does not belong to any other class, so there is nothing for it to be static of.
+// therfore belo code is wrong (compile time err)
+//  static class implementation{ 
+//     public static void main(String[] args) {
+        
+//     }
+// }
