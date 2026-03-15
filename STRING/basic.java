@@ -1,18 +1,71 @@
-
 package STRING;
+
 import java.util.HashMap;
 
 public class basic {
 
-//NOTE: USE OF sTRING.SPLIT();
+//NOTE: USE OF STRING.SPLIT();
 //  str.split()
-    void splitString(String s) {
-        String name = "  my  name is dee,pak ";
-        String arr[] = name.split(",");
+    static void splitString(String s) {
+
+        String arr[] = s.split(" ");
         for (String s1 : arr) {
             System.out.print(s1 + " ");
         }
     }
+
+    static StringBuilder removeSpecialChar(String s) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            int num = (int) (s.charAt(i));
+            if (num >= 0 && num <= 57 || num >= 123 && num <= 126 || num >= 91 && num <= 96) {
+                continue;
+            } else {
+                result.append(s.charAt(i));
+            }
+        }
+        System.out.println(result);
+        return result;
+
+    }
+
+    static void printAToZ(char ch) {
+        // if (ch == 'A') {
+        //     int no = 65;
+        //     for (int i = 0; i < 26; i++) {
+        //         System.out.print((char) (no + i)+" ");
+        //     }
+        // } else if (ch == 'a') {
+        //     int no = 97;
+        //     for (int i = 0; i < 26; i++) {
+        //         System.out.print((char) (no + i)+" ");
+        //     }
+        // }
+        switch (ch) {
+            case 'A': {
+                int no = 65;
+                for (int i = 0; i < 26; i++) {
+                    System.out.print((char) (no + i) + " ");
+                }
+                System.out.println();
+                break;
+            }
+            case 'a': {
+                int no = 97;
+                for (int i = 0; i < 26; i++) {
+                    System.out.print((char) (no + i) + " ");
+                }
+                System.out.println();
+                break;
+            }
+            default: {
+                System.out.println("NOt valid input");
+            }
+        }
+    }
+    // NOTE: to get int from char just substract with zero
+    // String s = "deepak";
+    //     System.out.println(s.charAt(4) - 0); // op: 97 
 
     //isPAlindrome 
     static boolean isPalindrome(String s) {
@@ -21,7 +74,7 @@ public class basic {
         }
         s = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
         // above line will skip all char and spaces due to '^' use it is responsible of special char
-        // (space) , . : ! @ # $ % ^ & * ( ) [ ] { } etc.
+        // i.e (space) , . : ! @ # $ % ^ & * ( ) [ ] { } etc.
         System.out.println(s);
         int start = 0;
         int end = s.length() - 1;
@@ -111,7 +164,9 @@ public class basic {
     }
 
     static boolean happyNumber(int n) {
-        while (n != 1 && n != 4) {
+        while (n != 1 && n != 4) { //if n=4 then it will never be a happy no
+            //bcz it will repeat the cycle
+            // 4 → 16 → 37 → 58 → 89 → 145 → 42 → 20 → 4 
             String s = String.valueOf(n);
             int sum = 0;
             for (int i = 0; i < s.length(); i++) {
@@ -120,7 +175,7 @@ public class basic {
             }
             n = sum;
         }
-        return n == 1;
+        return n == 1; // 1 means happy no if value of n becomes 1 means stop
     }
 
     static String revString(String word) {
@@ -154,28 +209,123 @@ public class basic {
     }
 
     //LENGTH OF LAST WORD
-    static int lengthOfLAstWord(String s) {
+    // static int lengthOfLAstWord(String s) {
+    //     int count = 0;
+    //     int i = s.length() - 1;
+    //     while (i >= 0) {
+    //         if (s.charAt(i) == ' ') {
+    //             if (count == 0) {
+    //                 i--;
+    //             } else {
+    //                 break;
+    //             }
+    //         } else {
+    //             count++;
+    //             i--;
+    //         }
+    //     }
+    //     return count;
+    // }
+
+    // using for loop
+    static int lengthofLAst(String s) {
         int count = 0;
-        int i = s.length() - 1;
-        while (i >= 0) {
-            if (s.charAt(i) == ' ') {
-                if (count == 0) {
-                    i--;
-                } else {
+        for (int i = s.length() - 1; i >= 0; i--) {
+            char curr = s.charAt(i);
+            if (curr == ' ') {
+                if (count != 0) {
                     break;
                 }
             } else {
                 count++;
-                i--;
+
             }
         }
         return count;
     }
 
     public static void main(String[] args) {
-        // System.out.println(isPalindrome(""));
-        String s = "abc";
-        String t = "bcde";
-        System.out.println(isSubsequence(s, t));
+System.out.println((int) Math.sqrt(25));
     }
 }
+
+// Java String Methods (Quick Notes)
+
+// Length and Check
+// length() - used for finding total number of characters
+// isEmpty() - used for checking if string length is 0
+// isBlank() - used for checking if string is empty or contains only spaces
+
+//Space Handling
+// trim() - used for removing spaces from start and end
+// strip() - used for removing Unicode spaces from start and end
+// stripLeading() - used for removing spaces from beginning
+// stripTrailing() - used for removing spaces from end
+
+//Character Acccess
+// charAt(int index) - used for getting character at given index
+// toCharArray() - used for converting string to character array
+
+// Comparison
+// equals(Object obj) - used for comparing content (case-sensitive)
+// equalsIgnoreCase(String s) - used for comparing content ignoring case
+// compareTo(String s) - used for lexicographical comparison
+// compareToIgnoreCase(String s) - used for comparison ignoring case
+
+//Searching
+// contains(CharSequence s) - used for checking substring existence
+// indexOf(char/String) - used for finding first occurrence
+// lastIndexOf(char/String) - used for finding last occurrence
+// startsWith(String prefix) - used for checking starting characters
+// endsWith(String suffix) - used for checking ending characters
+
+//Modification
+// toUpperCase() - used for converting to uppercase
+// toLowerCase() - used for converting to lowercase
+// replace(char old, char new) - used for replacing characters
+// replace(String old, String new) - used for replacing substring
+// replaceAll(String regex, String new) - used for replacing using regex
+// replaceFirst(String regex, String new) - used for replacing first match
+// substring(int begin) - used for extracting substring from index
+// substring(int begin, int end) - used for extracting substring between indexes end index not included
+// if (0,4) then 0-1-2-3 will be considered
+// concat(String s) - used for joining strings
+
+// Split and join
+// split(String regex) - used for splitting string into array
+// split(String regex, int limit) - used for splitting with limit
+// String.join(delimiter, elements) - used for joining multiple strings
+
+//Conversion
+// valueOf(any type) - used for converting other types to String
+// format(String format, args...) - used for formatted string creation
+
+//MAtching and validations
+// matches(String regex) - used for checking regex match
+
+//interning
+// intern() - used for storing string in string constant pool
+
+//Object Methods (Inherited)
+// toString() - used for returning string itself
+// getBytes() - used for converting string to byte array
+
+// Note:
+// Strings are immutable – any modification creates a new object
+
+
+
+/*
+| ASCII range   | Characters                         |
+| ------------- | ---------------------------------- |
+| **0 – 31**    | Control characters (non-printable) |
+| **32**        | Space                              |
+| **33 – 47**   | **Special characters**             |
+| **48 – 57**   | Digits `0–9`                       |
+| **58 – 64**   | **Special characters**             |
+| **65 – 90**   | Uppercase `A–Z`                    |
+| **91 – 96**   | **Special characters**             |
+| **97 – 122**  | Lowercase `a–z`                    |
+| **123 – 126** | **Special characters**             |
+
+ */

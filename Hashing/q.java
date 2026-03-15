@@ -74,19 +74,19 @@ public class q {
     //     }
     //     return true;
     // }
-    // static int[] twoSum(int arr[], int target) {
-    //     HashMap<Integer, Integer> map = new HashMap<>();
-    //     int ans[] = {-1};
-    //     for (int i = 0; i < arr.length; i++) {
-    //         if (map.containsKey(target - arr[i])) {
-    //             ans = new int[]{i, map.get(arr[i])};
-    //             return ans;
-    //         } else {
-    //             map.put(arr[i], i);
-    //         }
-    //     }
-    //     return ans;
-    // }
+    static int[] twoSum(int arr[], int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int ans[] = {-1};
+        for (int i = 0; i < arr.length; i++) {
+            if (map.containsKey(target - arr[i])) {
+                ans = new int[]{i, map.get(arr[i])};
+                return ans;
+            } else {
+                map.put(arr[i], i);
+            }
+        }
+        return ans;
+    }
 
     
     static int largestSubArrSum(int arr[]) {
@@ -113,12 +113,12 @@ public class q {
         // System.out.println(isAnagram(A, B));
         // String a = "egg";
         // String b = "add";
-        // System.out.println(isoMorphic(a, b));
-        int arr[] = {15, -2, 2, -8, 1, 7, 10, 23};
+        // // System.out.println(isoMorphic(a, b));
+        // int arr[] = {15, -2, 2, -8, 1, 7, 10, 23};
 
-        System.out.println(largestSubArrSum(arr));
-        // int arr[] = {2, 5, 2, 8, 90, 3, 2, 5};
-        // findFreq(arr);
+        // System.out.println(largestSubArrSum(arr));
+        int arr[] = {2, 5, 2, 8, 90, 3, 2, 5};
+     System.out.println(twoSum(arr, 93));
       
     }
 }
