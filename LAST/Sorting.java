@@ -29,58 +29,30 @@ public class Sorting {
         return arr;
     }
 
-    // static void quickSort(int arr[], int start, int end) {
-    // if (start < end) {
-    // int pivotIdx = partition(arr, start, end);
-    // quickSort(arr, start, pivotIdx - 1);
-    // quickSort(arr, pivotIdx + 1, end);
-    // }
-    // }
-
-    // static int partition(int arr[], int start, int end) {
-    // int i = start - 1;
-    // int pivot = arr[end];
-    // for (int j = start; j < end; j++) {
-    // if (arr[j] <= pivot) {// this is for ascending order
-    // // if(arr[j]>=pivot){ // this is for descending
-    // i++;
-    // int temp = arr[i];
-    // arr[i] = arr[j];
-    // arr[j] = temp;
-    // }
-    // }
-    // int temp = arr[i + 1]; // this is for placing pivot at correct positn
-    // arr[i + 1] = arr[end];
-    // arr[end] = temp;
-    // return i + 1;
-    // }
-
-
-    static int partion(int arr[], int st, int end) {
-        int idx = st - 1;
-        int j = st;
-        while (j < end) {
-            if (arr[j] <= arr[end]) {
-                idx++;
-                int temp = arr[j];
-                arr[j] = arr[idx];
-                arr[idx] = temp;
-            }
-            j++;
+    static void quickSort(int arr[], int start, int end) {
+        if (start < end) {
+            int pivotIdx = partition(arr, start, end);
+            quickSort(arr, start, pivotIdx - 1);
+            quickSort(arr, pivotIdx + 1, end);
         }
-        idx++;
-        int temp = arr[end];
-        arr[end] = arr[idx];
-        arr[idx] = temp;
-        return idx;
     }
-    static void quickSort(int arr[],int st,int end){
-       if(st<end){
-        int pivot=partion(arr, st,end);
-        quickSort(arr, st, pivot-1);
-        quickSort(arr, pivot+1, end);
-       }
 
+    static int partition(int arr[], int start, int end) {
+        int i = start - 1;
+        int pivot = arr[end];
+        for (int j = start; j < end; j++) {
+            if (arr[j] <= pivot) {// this is for ascending order
+                // if(arr[j]>=pivot){ // this is for descending
+                i++;
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        int temp = arr[i + 1]; // this is for placing pivot at correct positn
+        arr[i + 1] = arr[end];
+        arr[end] = temp;
+        return i + 1;
     }
 
     // isme hum har baar value ko compare karte karte uske right position pe rakh
@@ -306,7 +278,7 @@ public class Sorting {
 
     public static void main(String[] args) {
         int arr[] = { 7, 10, 4, 3, 20, 15 };
-        quickSort(arr, 0, arr.length-1);
+        quickSort(arr, 0, arr.length - 1);
         printArr(arr);
     }
 }

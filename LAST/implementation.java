@@ -1,7 +1,8 @@
+package LAST;
 
 class implementation {
 
-    static class Node {
+      static class Node {
 
         int data;
         Node next;
@@ -12,7 +13,11 @@ class implementation {
         }
     }
 
-    static class linkedlist {
+      static class linkedlist {
+
+        private static boolean detectCycle(Node head) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
 
         Node head = null;
         Node tail = null;
@@ -280,7 +285,37 @@ class implementation {
             return dummy.next;
         }
     }
+     static boolean detectCycle(Node head){
+        Node slow=head, fast=head;
+        while(fast!=null&& fast.next!=null){
+            
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast)return true;
+        }
+        return false;
+     }
 
+     static Node removeNthNode(Node head,int n){
+        Node temp=head;
+        int size=0;
+        while(temp!=null){
+            size++;
+            temp=temp.next;
+        }
+        if(size==n){
+            return head.next;
+        }
+        temp=head;
+        int curr=0;
+
+        while(curr!=size-n-1){
+            temp=temp.next;
+            curr++;
+        }
+        temp.next=temp.next.next;
+        return head;
+     }
     public static void main(String[] args) {
         linkedlist list1 = new linkedlist();
         linkedlist list2 = new linkedlist();
@@ -293,5 +328,6 @@ class implementation {
         list2.addLast(3);
         Node head = linkedlist.mergeList(list1, list2);
         linkedlist.printList(head);
+
     }
 }

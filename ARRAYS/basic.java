@@ -10,6 +10,23 @@ class Basic {
         }
     }
 
+    static void shiftZero(int arr[]) {
+        // [3,2,0,1,0,8,0]
+        int curr = 0;
+        int i = 0;
+        while (i < arr.length) {
+            if (arr[i] != 0) {
+                int temp = arr[curr];
+                arr[curr] = arr[i];
+                arr[i] = temp;
+                
+                curr++;
+            }
+            i++;
+        }
+        printArr(arr);
+    }
+
     static void bubbleSort(int arr[]) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = i + 1; j < arr.length; j++) {
@@ -74,25 +91,26 @@ class Basic {
     // return maxProfit;
     // }
     // ROMAN TO INTEGER
-    // static int romnToInteger(String s) {
-    // HashMap<Character, Integer> map = new HashMap<>();
-    // map.put('I', 1);
-    // map.put('V', 5);
-    // map.put('X', 10);
-    // map.put('L', 50);
-    // map.put('C', 100);
-    // map.put('D', 500);
-    // map.put('M', 1000);
-    // int result = map.get(s.charAt(s.length() - 1));
-    // for (int i = s.length() - 2; i >= 0; i--) {
-    // if (map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
-    // result = result - map.get(s.charAt(i));
-    // } else {
-    // result = result + map.get(s.charAt(i));
-    // }
-    // }
-    // return result;
-    // }
+    static int romnToInteger(String s) {
+    HashMap<Character, Integer> map = new HashMap<>();
+    map.put('I', 1);
+    map.put('V', 5);
+    map.put('X', 10);
+    map.put('L', 50);
+    map.put('C', 100);
+    map.put('D', 500);
+    map.put('M', 1000);
+    int result = map.get(s.charAt(s.length() - 1));
+    for (int i = s.length() - 2; i >= 0; i--) {
+    if (map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
+    result = result - map.get(s.charAt(i));
+    } else {
+    result = result + map.get(s.charAt(i));
+    }
+    }
+    return result;
+    }
+    
     // LENGTH OF LAST WORD
     // static int lengthOfLAstWord(String s) {
     // int count = 0;
@@ -135,7 +153,7 @@ class Basic {
         }
         String ans = "";
         Arrays.sort(arr);
-       
+
         int j = 0;
         if (arr[0].length() <= 1) {
             return ans;
@@ -184,8 +202,8 @@ class Basic {
         // rotateArr(arr);
         // rotateK(arr, 3);
         // System.out.println(maxProfit(arr));
-        // String s = "LVIII";
-        // System.out.println(romnToInteger(s));
+        String s = "LVIII";
+        System.out.println(romnToInteger(s));
         // String s = " fly ";
         // System.out.println(s.length());
         // System.out.println(lengthOfLAstWord(s));
@@ -197,27 +215,7 @@ class Basic {
         // for (String s : arr) {
         // System.out.println(s);
         // }
-        int r = 3;
-        int c = 3;
-        int arr[][] = new int[r][c];
-        Scanner sc = new Scanner(System.in);
-        System.out.println("start");
-        for (int i = 0; i < r; i++) {
-            for (int j = 0; j < c; j++) {
-                arr[i][j] = sc.nextInt();
-            }
-        }
-        for (int i = 0; i < r; i++) {
-            for (int j = 0; j < c; j++) {
-                arr[i][j] = arr[i][c - j];
-            }
-        }
-        for (int i = 0; i < r; i++) {
-            for (int j = 0; j < c; j++) {
-                System.out.print(arr[i][j]);
-            }
-            System.out.println();
-        }
-
+        int arr[]={4,0,1,9,0,3,0};
+        shiftZero(arr);
     }
 }

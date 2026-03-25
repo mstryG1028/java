@@ -34,8 +34,8 @@ public class BinaryTree {
         }
     }
 
-    static void printPreOrder(Node root) {  //TC:0(N) if level is given TC:2^l
-        if (root == null) {                 // SC: 0(logn) -for balanced BT : worst-0(n)- for skewed
+    static void printPreOrder(Node root) { // TC:0(N) if level is given TC:2^l
+        if (root == null) { // SC: 0(logn) -for balanced BT : worst-0(n)- for skewed
             return;
         }
         System.out.print(root.val + " -> ");
@@ -65,7 +65,7 @@ public class BinaryTree {
         }
     }
 
-    static void printPostOrder(Node root) { //also called and DFS
+    static void printPostOrder(Node root) { // also called and DFS
         if (root == null) {
             return;
         }
@@ -81,10 +81,10 @@ public class BinaryTree {
         }
         if (n == 1) {
             System.out.print(root.val + " ");
-            return;// agar hum yahan return na lagye to ye last 
+            return;// agar hum yahan return na lagye to ye last
             // level tak traverse karega TC badh jaayega
-            //without return TC:0(nlogn)
-            //with return TC:0(n)
+            // without return TC:0(nlogn)
+            // with return TC:0(n)
         }
         printNth(root.left, n - 1);
         printNth(root.right, n - 1);
@@ -100,22 +100,22 @@ public class BinaryTree {
         return l + r + 1;
 
     }
-    //      2    1st level        
-    //    /  \
-    //   14    10   2nd level
-    //  / \     \
-    // 6   5     11   3rd level
+    // 2 1st level
+    // / \
+    // 14 10 2nd level
+    // / \ \
+    // 6 5 11 3rd level
 
-    static int sumOfTree(Node root) { //TC:0(n)
+    static int sumOfTree(Node root) { // TC:0(n)
         if (root == null) {
             return 0;
         }
         int l = sumOfTree(root.left);
         int r = sumOfTree(root.right);
-        //pehle ye dono ke wajah se leaf tak jaayega
-        //l=6, r=5 first sum=11
-        //then root=4  now at 4 total=15 and at 10 total=21
-        //now root is 2 l=15 r=21 total=36 ans;
+        // pehle ye dono ke wajah se leaf tak jaayega
+        // l=6, r=5 first sum=11
+        // then root=4 now at 4 total=15 and at 10 total=21
+        // now root is 2 l=15 r=21 total=36 ans;
         System.out.println(root.val + l + r);
         return root.val + l + r;
 
@@ -152,7 +152,7 @@ public class BinaryTree {
         if (root == null) {
             return true;
         }
-        int lh = height(root.left); // it will not count 
+        int lh = height(root.left); // it will not count
         if (root.left != null) {
             lh++;
         }
@@ -170,14 +170,14 @@ public class BinaryTree {
         return isBalanced(root.left) && isBalanced(root.right);
 
     }
-    //      2    1st level        
-    //    /  \
-    //   14    10   2nd level
-    //  / \     \
-    // 6   5     11   3rd level
+    // 2 1st level
+    // / \
+    // 14 10 2nd level
+    // / \ \
+    // 6 5 11 3rd level
     // at leaf node height fn returning zero so the height of node 14 will be 1
-    //  but its not true
-    //bcz its height is 2 therefore we use  // if (root.left != null) lh++;
+    // but its not true
+    // bcz its height is 2 therefore we use // if (root.left != null) lh++;
 
     static int diameterOfTree(Node root) {
         if (root == null) {
@@ -235,6 +235,40 @@ public class BinaryTree {
         return root;
     }
 
+    static int countLeaf(Node root) {
+        if (root == null)
+            return 0;
+
+        if (root.left == null && root.right == null)
+            return 1;
+
+        return countLeaf(root.left) + countLeaf(root.right);
+    }
+
+    static Node mirror(Node root) {
+        if (root == null)
+            return null;
+
+        Node left = mirror(root.left);
+        Node right = mirror(root.right);
+
+        root.left = right;
+        root.right = left;
+
+        return root;
+    }
+
+    static boolean isBST(Node root, int min, int max) {
+        if (root == null)
+            return true;
+
+        if (root.val <= min || root.val >= max)
+            return false;
+
+        return isBST(root.left, min, root.val) &&
+                isBST(root.right, root.val, max);
+    }
+
     public static void main(String[] args) {
         Node root = new Node(1);
         Node a = new Node(2);
@@ -251,12 +285,12 @@ public class BinaryTree {
         b.left = e;
 
         // System.out.println(diameterOfTree(root));
-//hum level order traversal(breadth first search) ko aise bhi kar sakte hai
-//  but iski TC bahut worst hai
-        // int levels = BinaryTree.height(root)+1; 
+        // hum level order traversal(breadth first search) ko aise bhi kar sakte hai
+        // but iski TC bahut worst hai
+        // int levels = BinaryTree.height(root)+1;
         // for (int i = 1; i <= levels; i++) {
-        //     BinaryTree.printNth(root, i);
-        //     System.out.println();
+        // BinaryTree.printNth(root, i);
+        // System.out.println();
         // }
         // printPostOrder(root);
         System.out.println(lowestCommonAncestor(root, c, e).val);

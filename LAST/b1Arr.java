@@ -53,11 +53,11 @@ public class b1Arr {
             if (n > first) {
                 second = first;
                 first = n;
-            } else if (n > second) {
+            } else if (n > second && n != first) {
                 second = n;
             }
         }
-        return second;
+        return (second == Integer.MIN_VALUE) ? 1 : second;
     }
 
     // static int findMissingNO(int arr[]) {
@@ -73,35 +73,51 @@ public class b1Arr {
     // return expectedSum - arrSum;
     // }
 
-    static int findMissingNO(int arr[]) {
-        int n = arr.length + 1;
-        int xor = 0;
-        int xor1 = 0;
-        for (int i = 1; i <= n; i++) {
-            xor ^= i;
-        }
-        // this gives actually xor= 1 ^ 2 ^ 3 ^ 4 ^ 5 but internally its value will be 1
-        for (int num : arr) {
-            xor1 ^= num;
-        }
-        // this gives actually xor1 = 1 ^ 2 ^ 3 ^ 5 but internally its value will be
-        // xor1 = 5
-        return xor ^ xor1;
-        // return xor1-xor;// we can also write this
-    }
+    // static int findMissingNO(int arr[]) {
+    // int n = arr.length + 1;
+    // int xor = 0;
+    // int xor1 = 0;
+    // for (int i = 1; i <= n; i++) {
+    // xor ^= i;
+    // }
+    // // this gives actually xor= 1 ^ 2 ^ 3 ^ 4 ^ 5 but internally its value will
+    // be 1
+    // for (int num : arr) {
+    // xor1 ^= num;
+    // }
+    // // this gives actually xor1 = 1 ^ 2 ^ 3 ^ 5 but internally its value will be
+    // // xor1 = 5
+    // return xor ^ xor1;
+    // // return xor1-xor;// we can also write this
+    // }
 
-    static void moveAllZeroToEnd(int arr[]) { // 0(n) 0(1)
-        int curr = 0;
-        int i = 0;
-        while (i < arr.length) {
-            if (arr[i] != 0) {
-                int temp = arr[curr];
-                arr[curr] = arr[i];
-                arr[i] = temp;
-                curr++;
+    // static void moveAllZeroToEnd(int arr[]) { // 0(n) 0(1)
+    // int curr = 0;
+    // int i = 0;
+    // while (i < arr.length) {
+    // if (arr[i] != 0) {
+    // int temp = arr[curr];
+    // arr[curr] = arr[i];
+    // arr[i] = temp;
+    // curr++;
+    // }
+    // i++;
+
+    // }
+    // printArr(arr);
+    // }
+    static void moveAllZeroTend(int arr[]) {
+        int s = 0;
+        int e = arr.length - 1;
+        while (s <= e) {
+            if (arr[s] == 0) {
+                int temp = arr[e];
+                arr[e] = arr[s];
+                arr[s] = temp;
+                e--;
+            } else {
+                s++;
             }
-            i++;
-
         }
         printArr(arr);
     }
@@ -124,38 +140,41 @@ public class b1Arr {
         printArr(arr);
     }
 
-    static int[] twoSum(int arr[], int k) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        int ans[] = { -1, -1 };
-        for (int i = 0; i < arr.length; i++) {
-            if (map.containsKey(k - arr[i])) {
-                ans = new int[] { i, map.get(k - arr[i]) };
-                printArr(ans);
-                return ans;
-            } else {
-                map.put(arr[i], i);
-            }
-        }
-        printArr(ans);
-        return ans;
-    }
+    // static int[] twoSum(int arr[], int k) {
+    // HashMap<Integer, Integer> map = new HashMap<>();
+    // int ans[] = { -1, -1 };
+    // for (int i = 0; i < arr.length; i++) {
+    // if (map.containsKey(k - arr[i])) {
+    // ans = new int[] { i, map.get(k - arr[i]) };
+    // printArr(ans);
+    // return ans;
+    // } else {
+    // map.put(arr[i], i);
+    // }
+    // }
+    // printArr(ans);
+    // return ans;
+    // }
 
-    static int maxSubArrSum(int arr[]) { // 0(n) 0(1)
+    // static int maxSubArrSum(int arr[]) { // 0(n) 0(1)
 
-        int e = 0;
-        int maxSum = Integer.MIN_VALUE;
-        int currSum = 0;
-        for (e = 0; e < arr.length; e++) {
-            currSum += arr[e];
-            if (currSum > maxSum) {
-                maxSum = currSum;
+    // int e = 0;
+    // int maxSum = Integer.MIN_VALUE;
+    // int currSum = 0;
+    // for (e = 0; e < arr.length; e++) {
+    // currSum += arr[e];
+    // if (currSum > maxSum) {
+    // maxSum = currSum;
 
-            } else if (currSum <= 0) { // yahan pe problem hai koi arr me -ve no bhi sabse bda ho sakta hai
-                currSum = 0;
-            }
-        }
+    // } else if (currSum <= 0) { // yahan pe problem hai koi arr me -ve no bhi
+    // sabse bda ho sakta hai
+    // currSum = 0;
+    // }
+    // }
 
-        return maxSum;
+    // return maxSum;
+
+    // }
 
     }
     // --------------OR LESS CODE------------
@@ -312,43 +331,48 @@ public class b1Arr {
         return maxProd;
     }
 
-    static int maxProd(int arr[]) {
-        int pref = 1;
-        int suffix = 1;
-        int maxProd = Integer.MIN_VALUE;
-        for (int i = 0; i < arr.length; i++) {
-            if (pref == 0)
-                pref = 1;
-            if (suffix == 0)
-                suffix = 1;
-            pref = pref * arr[i];
-            suffix = suffix * arr[arr.length - i - 1];
-            maxProd = Math.max(maxProd, Math.max(pref, suffix));
-        }
-        return maxProd;
+    // static int maxProductSubb(int arr[]) {
+    // int max = arr[0];
+    // int min = arr[0];
+    // int ans = arr[0];
 
-    }
+    // for (int i = 1; i < arr.length; i++) {
+
+    // if (arr[i] < 0) {
+    // int temp = max;
+    // max = min;
+    // min = temp;
+    // }
+
+    // max = Math.max(arr[i], max * arr[i]);
+    // min = Math.min(arr[i], min * arr[i]);
+
+    // ans = Math.max(ans, max);
+    // }
+
+    // return ans;
+    // }
 
     // -----------------TRAPPING RAIN WATER---------------
 
-    static int maxWater(int arr[]) {
-        int ans = Integer.MIN_VALUE;
-        int i = 0;
-        int j = arr.length - 1;
-        while (i < j) {
-            int l = j - i;
-            int b = Math.min(arr[i], arr[j]);
+    // static int maxWater(int arr[]) {
+    // int ans = Integer.MIN_VALUE;
+    // int i = 0;
+    // int j = arr.length - 1;
+    // while (i < j) {
+    // int l = j - i;
+    // int b = Math.min(arr[i], arr[j]);
 
-            int area = l * b;
-            ans = Math.max(ans, area);
-            if (arr[i] < arr[j]) {
-                i++;
-            } else {
-                j--;
-            }
-        }
-        return ans;
-    }
+    // int area = l * b;
+    // ans = Math.max(ans, area);
+    // if (arr[i] < arr[j]) {
+    // i++;
+    // } else {
+    // j--;
+    // }
+    // }
+    // return ans;
+    // }
 
     static void generateAllTriplet(int arr[]) {
         for (int i = 0; i < arr.length - 2; i++) {
@@ -394,7 +418,7 @@ public class b1Arr {
 
     }
 
-    // -------------FINDOCCURENCE OF TARGET------------
+    // -------------FIND OCCURENCE OF TARGET------------
 
     // using normal loop
     // HASHMAP SE BHI KAR SAKTE HAI
@@ -419,7 +443,8 @@ public class b1Arr {
 
         while (s <= e) {
             int mid = s + (e - s) / 2;
-
+            // arr = {1, 2, 2, 2, 3, 4}
+            // target = 2
             if (arr[mid] == target) {
                 ans = mid;
                 e = mid - 1; // search on left side
@@ -465,118 +490,72 @@ public class b1Arr {
     }
 
     // static void mergeSortedArr(int arr1[], int arr2[]) {
-    //     int i = 0, j = 0;
-    //     while (i < arr1.length && j < arr2.length) {
-    //         if (arr2[j] > arr1[i] && arr2[j] < arr1[i + 1]) {
-    //             int temp = arr1[i + 1];
-    //             arr1[i + 1] = arr2[j];
-    //             if (temp < arr2[j + 1]) {
-    //                 arr2[j] = temp;
-    //             } else {
-    //                 int p = j;
-    //                 while (!(temp >= arr2[j])) {
+    // int i = 0, j = 0;
+    // while (i < arr1.length && j < arr2.length) {
+    // if (arr2[j] > arr1[i] && arr2[j] < arr1[i + 1]) {
+    // int temp = arr1[i + 1];
+    // arr1[i + 1] = arr2[j];
+    // if (temp < arr2[j + 1]) {
+    // arr2[j] = temp;
+    // } else {
+    // int p = j;
+    // while (!(temp >= arr2[j])) {
 
-    //                     p++;
-    //                 }
-    //                 int temp2 = arr2[j];
-    //                 arr2[p] = temp;
-    //                 arr2[j] = temp2;
+    // p++;
+    // }
+    // int temp2 = arr2[j];
+    // arr2[p] = temp;
+    // arr2[j] = temp2;
 
-    //             }
-    //             i++;
-    //         }
-
-    //     }
+    // }
+    // i++;
     // }
 
-    //using swap and sort method
+    // }
+    // }
+
+    // using swap and sort method
     static void merge(int arr1[], int arr2[]) {
 
-    int i = arr1.length - 1;
-    int j = 0;
+        int i = arr1.length - 1;
+        int j = 0;
 
-    while (i >= 0 && j < arr2.length) {
+        while (i >= 0 && j < arr2.length) {
 
-        if (arr1[i] > arr2[j]) {
+            if (arr1[i] > arr2[j]) {
 
-            int temp = arr1[i];
-            arr1[i] = arr2[j];
-            arr2[j] = temp;
+                int temp = arr1[i];
+                arr1[i] = arr2[j];
+                arr2[j] = temp;
 
-            i--;
-            j++;
-        }
-        else {
-            break;
-        }
-    }
-
-    Arrays.sort(arr1);
-    Arrays.sort(arr2);
-}
-
-//Using gap method
-class MergeSortedArrays {
-
-    static int nextGap(int gap) {
-        if (gap <= 1)
-            return 0;
-        return (gap / 2) + (gap % 2);
-    }
-
-    static void merge(int arr1[], int arr2[]) {
-
-        int n = arr1.length;
-        int m = arr2.length;
-
-        int gap = nextGap(n + m);
-
-        while (gap > 0) {
-
-            int i = 0;
-            int j = gap;
-
-            while (j < n + m) {
-
-                // arr1 & arr1 comparison
-                if (i < n && j < n) {
-                    if (arr1[i] > arr1[j]) {
-                        int temp = arr1[i];
-                        arr1[i] = arr1[j];
-                        arr1[j] = temp;
-                    }
-                }
-
-                // arr1 & arr2 comparison
-                else if (i < n && j >= n) {
-                    if (arr1[i] > arr2[j - n]) {
-                        int temp = arr1[i];
-                        arr1[i] = arr2[j - n];
-                        arr2[j - n] = temp;
-                    }
-                }
-
-                // arr2 & arr2 comparison
-                else {
-                    if (arr2[i - n] > arr2[j - n]) {
-                        int temp = arr2[i - n];
-                        arr2[i - n] = arr2[j - n];
-                        arr2[j - n] = temp;
-                    }
-                }
-
-                i++;
+                i--;
                 j++;
+            } else {
+                break;
             }
-
-            gap = nextGap(gap);
         }
-    }
-}
 
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+    }
+
+    static int allSubArrSumequalToK(int arr[], int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1); // this is for if arr[i]==k
+        int sum = 0;
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum = sum + arr[i];
+            if (map.containsKey(sum - k)) {
+                count += map.get(sum - k);
+            }
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
+        }
+        return count;
+    }
 
     public static void main(String[] args) {
-        int arr[] = { 1, 1, 2, 2, 2, 3, 4, 4 };
-        System.out.println(findOccurence(arr, 2));
+        int arr[] = { 5, 0, 2, 0, 4, 0, 3, 0 };
+
     }
 }

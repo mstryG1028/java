@@ -26,35 +26,47 @@ public class Maths {
         }
     }
 
-    static void gcdAndLcm(int a, int b) {
-        int small = Math.min(a, b);
-        int gcd = 1;
-        for (int i = small; i > 0; i--) {
-            if (a % i == 0 && b % i == 0) {
-                // gcd = Math.min(gcd, i);
-                // aisa likhe to wrong aa jaayega gcd means jo bhi pehla no from small to 2 a
-                // and b ko divide kar jaaye wo gcd hoga
-                gcd = i; // 10; for 10,20
-                break;
-            }
-        }
-        int lcm = (a * b) / gcd;
-        System.out.println(gcd);
-        System.out.println(lcm);
-    }
+    
 
-    static int gcd(int a, int b) { // the basic idea is make anyone zero then other will be gcd
-        while (a > 0 && b > 0) {
-            if (a > b)
-                a = a % b;
-            if (b > a)
-                b = b % a;
+    // static void gcdAndLcm(int a, int b) {
+    // int small = Math.min(a, b);
+    // int gcd = 1;
+    // for (int i = small; i > 0; i--) {
+    // if (a % i == 0 && b % i == 0) {
+    // // gcd = Math.min(gcd, i);
+    // // aisa likhe to wrong aa jaayega gcd means jo bhi pehla no from small to 2 a
+    // // and b ko divide kar jaaye wo gcd hoga
+    // gcd = i; // 10; for 10,20
+    // break;
+    // }
+    // }
+    // int lcm = (a * b) / gcd;
+    // System.out.println(gcd);
+    // System.out.println(lcm);
+    // }
+
+    // static int gcd(int a, int b) { // the basic idea is make anyone zero then other will be gcd
+    //     while (a > 0 && b > 0) {
+    //         if (a > b)
+    //             a = a % b;
+    //         if (b > a)
+    //             b = b % a;
+    //     }
+    //     if (a == 0)
+    //         return b;
+    //     return a;
+    // }
+
+    static int gcd(int a,int b){
+        if(a>b){
+            a=a%b;
         }
-        if (a == 0)
-            return b;
+        if(b>a){
+            b=b%a;
+        }
+        if(a==0)return b;
         return a;
     }
-
     static void gcdByEuclid(int a, int b) {
         int x = a;
         int y = b;
@@ -219,7 +231,6 @@ public class Maths {
     }
 
     public static void main(String[] args) {
-        System.out.println(powerByRec(2, 10));
-        countSumProductOfDigit(23);
+       System.out.println(gcd(30, 60));
     }
 }

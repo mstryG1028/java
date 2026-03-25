@@ -12,6 +12,24 @@ public class b2Str {
         }
     }
 
+    static boolean passIsStrong(String s) {
+
+        if (s.length() < 8)
+            return false;
+        boolean hasCapital = false;
+        boolean hasDigit = false;
+        for (int i = 0; i < s.length(); i++) {
+            char curr = s.charAt(i);
+            if (curr >= 'A' && curr <= 'Z') {
+                hasCapital = true;
+            }
+            if (curr >= '1' && curr <= '9') {
+                hasDigit = true;
+            }
+        }
+        return hasCapital && hasDigit;
+    }
+
     // CHECK STRING IS PALINDROME OR NOT
 
     // static boolean isPalindrome(String s) {
@@ -25,6 +43,8 @@ public class b2Str {
     // }
 
     static boolean isPalindrome(String str) {
+        // "[^a-z0-9]" this means remove all char except a-z ans 0-9
+        str = str.toLowerCase().replaceAll("[^a-z0-9]", "");
         int s = 0, e = str.length() - 1;
         while (s <= e) {
             if (str.charAt(s) != str.charAt(e)) {
@@ -117,7 +137,7 @@ public class b2Str {
 
     static void countOccurenceOfEachCharByArr(String s) {
         // int[] arr = new int[26];
-        int[] arr = new int[256]; // htis will consider all characters
+        int[] arr = new int[256]; // this will consider all characters
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
             arr[ch - 'a']++;
@@ -141,8 +161,8 @@ public class b2Str {
         String ans = "";
         for (int i = 0; i < s.length(); i++) {
             char curr = s.charAt(i);
-            if (ans.indexOf(curr) == -1) { // indexOf() finds the index of currChar and checks if it is already present
-                                           // or not
+            if (ans.indexOf(curr) == -1) { // indexOf() finds the index of currChar
+                                          //  and checks if it is already present or not                
                 ans = ans + curr;
             }
         }
@@ -188,6 +208,9 @@ public class b2Str {
      * 
      */
 
+
+
+    
     // LONGEST COMMON SUBSTRING
 
     /*
@@ -489,151 +512,188 @@ public class b2Str {
         return false;
     }
 
-   
+    // static void firstCharOdEveryWord(String s) {
+    // String arr[] = s.trim().split(" ");
+    // String ans = "";
+    // for (int i = 0; i < arr.length; i++) {
+    // ans = ans + arr[i].charAt(0);
+    // }
+    // System.out.println(ans);
+    // }
+    static void firstCharOdEveryWord(String s) {
+        int i = 0;
+        String ans = "";
+        while (i < s.length()) {
+            while (i < s.length() && s.charAt(i) == ' ') {
+                i++;
+            }// to come at first char by skippig all spaces
 
-    public static void main(String[] args) {
+            if (i < s.length()) {
+                ans = ans + s.charAt(i);
+            }
+            while (i < s.length() && s.charAt(i) != ' ') {
+                i++;
+            }
 
-        System.out.println(hai(145));
-
-    }
-}
-
-
-/*
-
-========================================================
-PERMUTATIONS OF A STRING – COMPLETE NOTES + CODE
-========================================================
-
-1. What is Permutation?
-Permutation means arranging characters in all possible orders.
-
-Example:
-String = "ABC"
-
-ABC
-ACB
-BAC
-BCA
-CAB
-CBA
-
-
---------------------------------------------------------
-2. Total Number of Permutations (All Characters Unique)
---------------------------------------------------------
-
-Formula:
-n!
-
-where
-n = length of string
-! = factorial
-
-Example:
-"ABC"
-
-n = 3
-
-3! = 3 × 2 × 1 = 6 permutations
-
-
---------------------------------------------------------
-3. If Characters Repeat
---------------------------------------------------------
-
-Formula:
-
-n! / (freq1! × freq2! × freq3! ...)
-
-Example:
-"AAB"
-
-n = 3
-
-3! / 2! = 3
-
-Permutations:
-AAB
-ABA
-BAA
-
-
---------------------------------------------------------
-4. Java Code to Find Factorial
---------------------------------------------------------
-
-
-class PermutationNotes {
-
-    // factorial function
-    static int factorial(int n) {
-        int fact = 1;
-
-        for (int i = 1; i <= n; i++) {
-            fact = fact * i;
         }
+        System.out.println(ans);
 
-        return fact;
     }
 
+    static void firstCharOdEveryWor(String s) {
+        StringBuilder ans = new StringBuilder();
 
-/*
---------------------------------------------------------
-5. Count permutations when ALL characters are UNIQUE
---------------------------------------------------------
+        for (int i = 0; i < s.length(); i++) {
 
-
-    static int countUniquePermutations(String s) {
-        int n = s.length();
-        return factorial(n);
-    }
-
-
-/*
---------------------------------------------------------
-6. Count permutations when characters may repeat
---------------------------------------------------------
-
-
-    static int countPermutationsWithDuplicates(String s) {
-
-        int n = s.length();
-        int[] freq = new int[256];
-
-        // count frequency of characters
-        for (int i = 0; i < n; i++) {
-            freq[s.charAt(i)]++;
-        }
-
-        int numerator = factorial(n);
-        int denominator = 1;
-
-        for (int i = 0; i < 256; i++) {
-            if (freq[i] > 1) {
-                denominator = denominator * factorial(freq[i]);
+            if ((i == 0 || s.charAt(i - 1) == ' ') && s.charAt(i) != ' ') {
+                ans.append(s.charAt(i));
             }
         }
 
-        return numerator / denominator;
+        System.out.println(ans);
     }
-
-
-/*
---------------------------------------------------------
-7. Driver Code
---------------------------------------------------------
-
 
     public static void main(String[] args) {
+System.out.println(        stringCompression("eemqmtmumemwmqamamasmss"));
 
-        String s1 = "ABC";
-        System.out.println("Unique permutations: "
-                + countUniquePermutations(s1));
-
-        String s2 = "AAB";
-        System.out.println("Permutations with duplicates: "
-                + countPermutationsWithDuplicates(s2));
     }
 }
-*/
+
+/*
+ * 
+ * ========================================================
+ * PERMUTATIONS OF A STRING – COMPLETE NOTES + CODE
+ * ========================================================
+ * 
+ * 1. What is Permutation?
+ * Permutation means arranging characters in all possible orders.
+ * 
+ * Example:
+ * String = "ABC"
+ * 
+ * ABC
+ * ACB
+ * BAC
+ * BCA
+ * CAB
+ * CBA
+ * 
+ * 
+ * --------------------------------------------------------
+ * 2. Total Number of Permutations (All Characters Unique)
+ * --------------------------------------------------------
+ * 
+ * Formula:
+ * n!
+ * 
+ * where
+ * n = length of string
+ * ! = factorial
+ * 
+ * Example:
+ * "ABC"
+ * 
+ * n = 3
+ * 
+ * 3! = 3 × 2 × 1 = 6 permutations
+ * 
+ * 
+ * --------------------------------------------------------
+ * 3. If Characters Repeat
+ * --------------------------------------------------------
+ * 
+ * Formula:
+ * 
+ * n! / (freq1! × freq2! × freq3! ...)
+ * 
+ * Example:
+ * "AAB"
+ * 
+ * n = 3
+ * 
+ * 3! / 2! = 3
+ * 
+ * Permutations:
+ * AAB
+ * ABA
+ * BAA
+ * 
+ * 
+ * --------------------------------------------------------
+ * 4. Java Code to Find Factorial
+ * --------------------------------------------------------
+ * 
+ * 
+ * class PermutationNotes {
+ * 
+ * // factorial function
+ * static int factorial(int n) {
+ * int fact = 1;
+ * 
+ * for (int i = 1; i <= n; i++) {
+ * fact = fact * i;
+ * }
+ * 
+ * return fact;
+ * }
+ * 
+ * 
+ * /*
+ * --------------------------------------------------------
+ * 5. Count permutations when ALL characters are UNIQUE
+ * --------------------------------------------------------
+ * 
+ * 
+ * static int countUniquePermutations(String s) {
+ * int n = s.length();
+ * return factorial(n);
+ * }
+ * 
+ * 
+ * /*
+ * --------------------------------------------------------
+ * 6. Count permutations when characters may repeat
+ * --------------------------------------------------------
+ * 
+ * 
+ * static int countPermutationsWithDuplicates(String s) {
+ * 
+ * int n = s.length();
+ * int[] freq = new int[256];
+ * 
+ * // count frequency of characters
+ * for (int i = 0; i < n; i++) {
+ * freq[s.charAt(i)]++;
+ * }
+ * 
+ * int numerator = factorial(n);
+ * int denominator = 1;
+ * 
+ * for (int i = 0; i < 256; i++) {
+ * if (freq[i] > 1) {
+ * denominator = denominator * factorial(freq[i]);
+ * }
+ * }
+ * 
+ * return numerator / denominator;
+ * }
+ * 
+ * 
+ * /*
+ * --------------------------------------------------------
+ * 7. Driver Code
+ * --------------------------------------------------------
+ * 
+ * 
+ * public static void main(String[] args) {
+ * 
+ * String s1 = "ABC";
+ * System.out.println("Unique permutations: "
+ * + countUniquePermutations(s1));
+ * 
+ * String s2 = "AAB";
+ * System.out.println("Permutations with duplicates: "
+ * + countPermutationsWithDuplicates(s2));
+ * }
+ * }
+ */
